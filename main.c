@@ -56,8 +56,6 @@ char* replace_smart (const char *str, const char *sub, const char *rep)
 }
 
 char* formatScientificNotation(char *number) {
-    printf("Input to formatScientificNotation is %s\n", number);
-
     // Quit early if we don't have an 'e' number
     if(strstr(number, "e") == NULL){
         return number;
@@ -74,7 +72,6 @@ char* formatScientificNotation(char *number) {
     strcpy(number, replace_smart(number, "{-0", "{-"));
     strcpy(number, replace_smart(number, "{0", "{"));
     strcat(number, "}");
-    printf("%s\n", number);
     return number;
 }
 
