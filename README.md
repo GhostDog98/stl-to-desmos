@@ -4,6 +4,6 @@ Forked from https://github.com/WagyuDEV/desmos3d but written in C and faster!
 Previously it took a few hours to do a 400-500mb file, this takes 17 seconds 😄.
 
 Todo:
-- Don't require sed in future releases
-- Command line options
+- ~~Don't require sed in future releases~~ DONE!
+- ~~Command line options~~ DONE!
 - MOAR SPEED!
