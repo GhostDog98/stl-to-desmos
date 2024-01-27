@@ -5,4 +5,5 @@ Previously it took a few hours to do a 400-500mb file, this takes 17 seconds ðŸ˜
 
 Todo:
 - Don't require sed in future releases
+- Command line options
 - MOAR SPEED!
