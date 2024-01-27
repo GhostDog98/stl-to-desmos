@@ -3,16 +3,18 @@
 #include <string.h>
 #include <ctype.h>
 char* formatScientificNotation(double number) {
-    char numberStr[500];  // Adjust the size as needed
-    snprintf(numberStr, sizeof(numberStr), "%.6e", number);
+    //char numberStr[500];  // Adjust the size as needed
+    //snprintf(numberStr, sizeof(numberStr), "%.6e", number);
 
-    char *ret = strstr(numberStr, "e");
+    char resultString[500];  // Adjust the size as needed
+    snprintf(resultString, sizeof(resultString), "%.6e", number);
+
+    char *ret = strstr(resultString, "e");
     if(ret == NULL){
-        return strdup(numberStr);
+        return strdup(resultString);
     }
 
-    char resultString[50];  // Adjust the size as needed
-    snprintf(resultString, sizeof(resultString), "%.6e", number);
+    
 
     char* exponentStr = strchr(resultString, 'e');
     if (exponentStr != NULL) {
