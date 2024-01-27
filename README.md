@@ -1,12 +1,16 @@
 # stl-to-desmos
-converts an stl to desmos art. 
+Converts an stl to desmos art. 
+
 Forked from https://github.com/WagyuDEV/desmos3d but written in C and faster!
-Previously it took a few hours to do a 400-500mb file, this takes 17 seconds 😄.
+
+Previously it took a few hours to do a 400-500mb file, this takes 2 seconds 😄.
+
+Also, it is completely identical output to the original python, down to the byte. This can be checked with `sha256sum`, where it outputs the same hash for both files!
 
 Todo:
 - ~~Don't require sed in future releases~~ DONE!
 - ~~Command line options~~ DONE!
-- MOAR SPEED!
+- ~~MOAR SPEED!~~ DONE!
 
 ## Speed benchmarks
 File used for benchmark was generated using the python script. This file generated is 348351444 bytes, or 333 megabytes.
@@ -40,3 +44,5 @@ Version 2.5
 | real    | 5.482  | 0.101    | 5.373  | 5.456  | 5.616  |
 | user    | 4.360  | 0.090    | 4.265  | 4.334  | 4.481  |
 | sys     | 0.644  | 0.017    | 0.622  | 0.648  | 0.662  |
+
+Version 3
