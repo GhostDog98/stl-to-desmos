@@ -41,6 +41,14 @@ char* formatScientificNotation(double number) {
 //sed -i 's/^[ ]*//' file.txt
 //sed -i 's/endfacet//' file.txt
 
+// Function to trim leading spaces from a string
+char* trimLeadingSpaces(char* str) {
+    while (*str == ' ' || *str == '\t') {
+        str++;
+    }
+    return str;
+}
+
 void process_stl(char *stl){
     FILE *file;
     char line[1000];
@@ -52,22 +60,27 @@ void process_stl(char *stl){
     }
 
     while (fgets(line, sizeof(line), file) != NULL) {
-        if (sscanf(line, "    vertex %lf %lf %lf", &x, &y, &z) == 3) { // if we got a line with vertexes
-            if (!firstEntry) {
-                printf(", ");
+
+        char *trimmedline = trimLeadingSpaces(line);
+
+        if(trimmedline[0] == 'v'){
+            if (sscanf(trimmedline, "vertex %lf %lf %lf", &x, &y, &z) == 3) { // if we got a line with vertexes
+                if (!firstEntry) {
+                    printf(", ");
+                }
+                printf("(%s, %s, %s)", formatScientificNotation(x), formatScientificNotation(y), formatScientificNotation(z));
+                firstEntry = 0; // Set to 0 after printing the first entry
             }
-            printf("(%s, %s, %s)", formatScientificNotation(x), formatScientificNotation(y), formatScientificNotation(z));
-            firstEntry = 0; // Set to 0 after printing the first entry
-        } else if (line[0] == 'e') { //if we got an endfacet
+        } else if (trimmedline[0] == 'e') { //if we got an endfacet
             if (fgets(line, sizeof(line), file) == NULL) {
                 // If it's the last line of the file, don't print "\\right)"
                 break;
             }
             printf("\\right)\n");
             firstEntry = 1; // Reset for the next line
-        } else if (line[0] == 'f') { // if we have "facet normal"
+        } else if (trimmedline[0] == 'f') { // if we have "facet normal"
             printf("\\triangle\\left");
-        } else if (line[0] == '\n') { // Skip over empty lines
+        } else if (trimmedline[0] == '\n') { // Skip over empty lines
             printf("\n");
         }
     }
@@ -75,8 +88,16 @@ void process_stl(char *stl){
     fclose(file);
 }
 
-int main() {
+int main(int argc, char* argv[]) {
 
-    process_stl("tester-whole.stl");
+    // First, user must run
+    //sed -i 's/^[ ]*//' file.stl
+    //sed -i 's/^endfacet//' file.stl
+    if (strstr(argv[1], ".stl") == NULL)
+    {
+        printf("This ain't an stl file... ruh roh...\n");
+        return 1;
+    }
+    process_stl(argv[1]);
     return 0;
 }
