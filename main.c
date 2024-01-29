@@ -13,8 +13,6 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,7 +37,6 @@ void print_gnu_gpl() {
     "You should have received a copy of the GNU General Public License\n"
     "along with this program.  If not, see <https://www.gnu.org/licenses/>.\n");
 }
-
 
 /* A realloc-based function by Albert Chan <albertmcchan@yahoo.com>, sent to Laird Shaw
  * privately, and reproduced here with Albert's permission as public domain
@@ -84,6 +81,8 @@ char* formatScientificNotation(char *number) {
         return number;
     }
 
+    // Options 1
+    
     // Now we do expensive shit...
     strcpy(number, replace_smart(number, "e", "*10^{"));
 
@@ -91,6 +90,8 @@ char* formatScientificNotation(char *number) {
     strcpy(number, replace_smart(number, "{-0", "{-"));
     strcpy(number, replace_smart(number, "{0", "{"));
     strcat(number, "}");
+    
+
     return number;
 }
 
